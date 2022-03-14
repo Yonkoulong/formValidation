@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Font Awesome -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css" rel="stylesheet" />
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="style.css">
+    <title>Document</title>
+</head>
+
+<body>
+    <div class="signUp">
+        <a href="./formAccount1.html">Sign up</a>
+    </div>
+    <div class="main">
+        <form action="" method="POST" class="form" id="signIn-form">
+            <h3 class="heading">The member sign in</h3>
+            <p class="desc">Let's learn programming together for free at F8 <i class="fas fa-heart"></i></p>
+
+            <div class="spacer"></div>
+
+            <div class="form-group">
+                <label for="email" class="form-label">Email</label>
+                <input type="text" id="email" rules="required|email" name="email" class="form-control">
+                <span class="form-message"></span>
+            </div>
+
+
+            <div class="form-group">
+                <label for="password" class="form-label">Password</label>
+                <input type="password" id="password" rules="required|min:6" name="password" class="form-control">
+                <span class="form-message"></span>
+            </div>
+
+            <div class="form-group">
+                <div class="form--checkbox">
+                    <label for="" class="form--check-label">
+                        <input type="checkbox"  id="checkbox" rules="required" name="checkbox" value="checkbox"
+                            class="form-control checkbox">I agree this policy
+                    </label>
+                    <span class="form-message"></span>
+                </div>
+            </div>
+
+            <button class="form-submit">Sign in</button>
+        </form>
+    </div>
+    <script src="./validator2.js"></script>
+
+    <script>
+
+        //1. Expected / hope
+       var form = new Validator('#signIn-form');
+
+       form.onSubmit = function (formData) {
+            console.log(formData)
+       }
+
+    </script>
+</body>
+
+</html>

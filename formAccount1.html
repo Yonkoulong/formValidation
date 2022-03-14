@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Font Awesome -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css" rel="stylesheet" />
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap" rel="stylesheet" />
+    <!-- MDB -->
+    <!-- <link href="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/3.10.2/mdb.min.css" rel="stylesheet" /> -->
+    <!-- css -->
+    <link rel="stylesheet" href="style.css">
+    <title>Validator</title>
+</head>
+
+<body>
+    <div class="signIn">
+        <a href="./formAccount2.html">Sign in</a>
+    </div>
+    <div class="main">
+        <form action="" method="POST" class="form" id="form-1">
+            <h3 class="heading">The member sign up</h3>
+            <p class="desc">Let's learn programming together for free at F8 <i class="fas fa-heart"></i></p>
+
+            <div class="spacer"></div>
+
+            <div class="form-group">
+                <label for="fullname" class="form-label">Full name</label>
+                <input type="text" id="fullname" name="fullname" placeholder="VD: Long Yonkou" class="form-control">
+                <span class="form-message"></span>
+            </div>
+
+            <div class="form-group">
+                <label for="email" class="form-label">Email</label>
+                <input type="text" id="email" name="email" placeholder="VD: yonkoulong@gmail.com" class="form-control">
+                <span class="form-message"></span>
+            </div>
+
+            <div class="form-group">
+                <label for="province" class="form-label">Country</label>
+                <!-- <input type="text" id="email" name="email" placeholder="VD: yonkoulong@gmail.com" class="form-control"> -->
+                <select name="province" id="province" class="form-control">
+                    <option value="">-- Select Country --</option>
+                    <option value="vn">Vietnam</option>
+                    <option value="us">USA</option>
+                    <option value="uk">England</option>
+                </select>
+                <span class="form-message"></span>
+            </div>
+
+            <div class="form-group">
+                <label for="avatar" class="form-label">Avatar</label>
+                <input type="file" id="avatar" name="avatar" class="form-control">
+                <span class="form-message"></span>
+            </div>
+
+            <div class="form-group">
+                <label for="password" class="form-label">Password</label>
+                <input type="password" id="password" name="password" placeholder="Enter your password"
+                    class="form-control">
+                <span class="form-message"></span>
+            </div>
+
+            <div class="form-group">
+                <label for="password_confirmation" class="form-label">Password Repeat</label>
+                <input type="password" id="password_confirmation" name="password_confirmation"
+                    placeholder="Enter your password again" class="form-control">
+                <span class="form-message"></span>
+            </div>
+
+            <div class="form-group">
+                <label for="password_confirmation" class="form-label">Sex</label>
+                <div class="form--check">
+                    <div class="form--check-radio">
+                        <label class="form--check-label" for="inlineRadio1">
+                            <input type="radio" id="male" name="gender" value="male" class="form-control radio">Male
+                        </label>
+                    </div>
+                    <div class="form--check-radio">
+                        <label class="form--check-label" for="inlineRadio1">
+                            <input type="radio" id="female" name="gender" value="female" class="form-control radio">Female
+                        </label>
+                    </div>
+                    <div class="form--check-radio">
+                        <label class="form--check-label" for="inlineRadio1">
+                            <input type="radio" id="other" name="gender" value="other" class="form-control radio">Other
+                        </label>
+                    </div>
+                </div>
+                <span class="form-message"></span>
+            </div>
+
+            <div class="form-group">
+                <div class="form--checkbox">
+                    <label for="" class="form--check-label">
+                         <input type="checkbox" id="checkbox" name="checkbox" value="checked" class="form-control checkbox">I agree this policy
+                    </label>
+                    <span class="form-message"></span>
+                </div>
+    
+            </div>
+
+            <button class="form-submit">Sign up</button>
+        </form>
+    </div>
+
+    <script src="validator1.js"></script>
+    <script>
+
+        //Our Exepect
+        Validator({
+            form: '#form-1',
+            formGroupSelector: '.form-group',
+            errorSelector: '.form-message',
+            rules: [
+                Validator.isRequired('#fullname', 'Please, enter whole name includes family, first name'),
+                Validator.isRequired('#email'),
+                Validator.isEmail('#email', 'Enter your email, please!'),
+                Validator.isRequired('#province'),
+                Validator.isRequired('#avatar'),
+                Validator.isRequired('#password'),
+                Validator.minLength('#password', 6, 'Password must stronger'),
+                Validator.isRequired('#password_confirmation'),
+                Validator.isConfirmed('#password_confirmation', function () {
+                    return document.querySelector('#form-1 #password').value
+                }, 'Password is not the same'),
+                Validator.isRequired('input[name="gender"]'),
+                Validator.isRequired('input[name="checkbox"]'),
+            ],
+            onSubmit: function (data) {
+                //call API
+                console.log(data)
+            }
+        });
+
+    </script>
+</body>
+
+</html>
